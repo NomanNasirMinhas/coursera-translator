@@ -7,12 +7,11 @@ load_dotenv()
 apikey = os.environ['apikey']
 url = os.environ['url']
 
-
 def english_to_french(english_text):
     authenticator = IAMAuthenticator(apikey)
     language_translator = LanguageTranslatorV3(
         version='2018-05-01',
-        authenticator=authenticator
+        authenticator=authenticator,
     )
     language_translator.set_service_url(url)
 
@@ -28,12 +27,12 @@ def english_to_french(english_text):
 
 
 def french_to_english(french_text):
-    authenticator = IAMAuthenticator('{your_api_key}')
+    authenticator = IAMAuthenticator(apikey)
     language_translator = LanguageTranslatorV3(
         version='2018-05-01',
         authenticator=authenticator
     )
-    language_translator.set_service_url('{your_service_url}')
+    language_translator.set_service_url(url)
     
     translation = language_translator.translate(
         text=french_text,
